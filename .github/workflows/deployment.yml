@@ -32,5 +32,5 @@ jobs:
           manifests/deployment.yaml
           manifests/service.yaml
           manifests/ingress.yaml
-        images: docker.pkg.github.com/bitcynth/cynk8stest/main:${{ github.sha }}
-        imagepullsecrets: ""
+        images: |
+          docker.pkg.github.com/bitcynth/cynk8stest/main:${{ github.sha }}
