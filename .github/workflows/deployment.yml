@@ -9,7 +9,7 @@ jobs:
       uses: actions/checkout@v1
 
     - name: Login to docker registry
-      uses: Azure/docker-login@1
+      uses: Azure/docker-login@v1
       with:
         login-server: docker.pkg.github.com
         username: bitcynth
