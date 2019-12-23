@@ -17,8 +17,8 @@ jobs:
     
     - name: Build the Docker image
       run: |
-        docker build . -t docker.pkg.github.com/bitcynth/cynk8stest:${{ github.sha }}
-        docker push docker.pkg.github.com/bitcynth/cynk8stest:${{ github.sha }}
+        docker build . -t docker.pkg.github.com/bitcynth/cynk8stest/main:${{ github.sha }}
+        docker push docker.pkg.github.com/bitcynth/cynk8stest/main:${{ github.sha }}
     
     - name: Set k8s context
       uses: Azure/k8s-set-context@v1
@@ -29,4 +29,4 @@ jobs:
       uses: Azure/k8s-deploy@v1
       with:
         manifests: manifest.yaml
-        images: docker.pkg.github.com/bitcynth/cynk8stest:${{ github.sha }}
+        images: docker.pkg.github.com/bitcynth/cynk8stest/main:${{ github.sha }}
