@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: cynk8stest
-          image: bitcynth/cynk8stest:latest
+          image: docker.pkg.github.com/bitcynth/cynk8stest/main
           ports:
             - containerPort: 8080
               protocol: TCP
