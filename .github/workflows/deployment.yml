@@ -1,0 +1,32 @@
+name: Deployment
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v1
+
+    - name: Login to docker registry
+      uses: Azure/docker-login@1
+      with:
+        login-server: docker.pkg.github.com
+        username: bitcynth
+        password: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Build the Docker image
+      run: |
+        docker build . -t docker.pkg.github.com/bitcynth/cynk8stest:${{ github.sha }}
+        docker push docker.pkg.github.com/bitcynth/cynk8stest:${{ github.sha }}
+    
+    - name: Set k8s context
+      uses: Azure/k8s-set-context@v1
+      with:
+        kubeconfig: ${{ secrets.KUBE_CONFIG }}
+    
+    - name: Deploy k8s
+      uses: Azure/k8s-deploy@v1
+      with:
+        manifests: manifest.yaml
+        images: docker.pkg.github.com/bitcynth/cynk8stest:${{ github.sha }}
