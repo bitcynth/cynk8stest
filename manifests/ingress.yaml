@@ -1,0 +1,12 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: cynk8stest-ingress
+spec:
+  rules:
+  - host: cynk8stest.do.cynthia.re
+    http:
+      paths:
+      - backend:
+          serviceName: cynk8stest
+          servicePort: 80

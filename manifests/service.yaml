@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: cynk8stest
+spec:
+  selector:
+    app: cynk8stest
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 8080

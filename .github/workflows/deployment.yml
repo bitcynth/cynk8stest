@@ -28,5 +28,8 @@ jobs:
     - name: Deploy k8s
       uses: Azure/k8s-deploy@v1
       with:
-        manifests: manifest.yaml
+        manifests: |
+          manifests/deployment.yaml
+          manifests/service.yaml
+          manifests/ingress.yaml
         images: docker.pkg.github.com/bitcynth/cynk8stest/main:${{ github.sha }}
