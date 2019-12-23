@@ -17,7 +17,7 @@ jobs:
     
     - name: Build the Docker image
       run: |
-        docker build . -t docker.pkg.github.com/bitcynth/cynk8stest/main:${{ github.sha }}
+        docker build . --build-arg build_version="${{ github.sha }}" --build-arg build_time=$(date +'%Y-%m-%d_%T') -t docker.pkg.github.com/bitcynth/cynk8stest/main:${{ github.sha }}
         docker push docker.pkg.github.com/bitcynth/cynk8stest/main:${{ github.sha }}
     
     - name: Set k8s context
