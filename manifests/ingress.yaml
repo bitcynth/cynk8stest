@@ -2,7 +2,14 @@ apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: cynk8stest-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: "letsencrypt-staging"
 spec:
+  tls:
+  - hosts:
+    - cynk8stest.do.cynthia.re
+    secretName: cynk8stest-tls
   rules:
   - host: cynk8stest.do.cynthia.re
     http:
