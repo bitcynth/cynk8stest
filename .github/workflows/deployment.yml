@@ -41,5 +41,3 @@ jobs:
           manifests/service.yaml
         images: |
           docker.pkg.github.com/bitcynth/cynk8stest/main:${{ github.sha }}
-        imagepullsecrets: |
-          k8s-secret
