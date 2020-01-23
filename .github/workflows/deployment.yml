@@ -25,14 +25,6 @@ jobs:
       with:
         kubeconfig: ${{ secrets.KUBE_CONFIG }}
 
-    - name: Create k8s secret
-      uses: Azure/k8s-create-secret@v1
-      with:
-        container-registry-url: docker.pkg.github.com
-        container-registry-username: bitcynth
-        container-registry-password: ${{ secrets.GITHUB_TOKEN }}
-        secret-name: k8s-secret
-
     - name: Deploy k8s
       uses: Azure/k8s-deploy@v1
       with:
@@ -42,4 +34,4 @@ jobs:
         images: |
           docker.pkg.github.com/bitcynth/cynk8stest/main:${{ github.sha }}
         imagepullsecrets: |
-          k8s-secret
+          regcred
